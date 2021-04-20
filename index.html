@@ -14,8 +14,13 @@
     <h1>Content</h1>
     <script>
     // register ServiceWorker, remember to use absolute path!
-    if (navigator.serviceWorker) {
+    if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/communism-button/sw.js', {scope: '/communism-button/'})
+        .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope)
+        }, err => {
+            console.log('ServiceWorker registration failed: ', err)
+        })
     }
     // --- Application code here ---
     </script>
