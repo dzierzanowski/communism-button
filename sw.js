@@ -1,7 +1,7 @@
 var CACHE_NAME = 'communism-button-v1'
 var urlsToCache = [             // Add URL you want to cache in this list.
-    "/dzierzanowski/",          // If you have separate JS/CSS files,
-    "/dzierzanowski/index.html" // add path to those files here
+    "/communism-button/",          // If you have separate JS/CSS files,
+    "/communism-button/index.html" // add path to those files here
 ]
 
 // Respond with cached resources
@@ -26,7 +26,6 @@ self.addEventListener('install', e => {
         caches.open(CACHE_NAME).then(cache => {
             console.log('Installing cache: ' + CACHE_NAME)
             return cache.addAll(urlsToCache)
-            // return cache.addAll(['/dzierzanowski/'])
         })
     )
 })
