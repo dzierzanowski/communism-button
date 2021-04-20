@@ -1,7 +1,9 @@
 var CACHE_NAME = 'communism-button-v1'
 var urlsToCache = [             // Add URL you want to cache in this list.
     "/communism-button/",          // If you have separate JS/CSS files,
-    "/communism-button/index.html" // add path to those files here
+    "/communism-button/index.html", // add path to those files here
+    "/communism-button/bs/css/bootstrap.min.css",
+    "/communism-button/bs/js/bootstrap.bundle.min.js"
 ]
 
 // Respond with cached resources
