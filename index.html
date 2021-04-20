@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <title>Communism Button</title>
+    <link rel="canonical" href="https://dzierzanowski.github.io/communism-button/" />
+    <style type="text/css">
+    *{
+        background-color: #F5F4F0;
+        font-family: Georgia, serif;
+    }
+    </style>
+</head>
+<body>
+    <h1>Content</h1>
+    <script>
+    // register ServiceWorker, remember to use absolute path!
+    if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('/communism-button/sw.js', {scope: '/communism-button/'})
+    }
+    // --- Application code here ---
+    </script>
+</body>
+</html>
