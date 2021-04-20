@@ -14,3 +14,4 @@ Thanks to [@kosamari](https://github.com/kosamari) for sharing a simple [service
 ## Licensing
 This app is licensed under GNU Affero General Public License v3.0, which will hopefully
 prevent capitalists from capitalizing this communism.
+
