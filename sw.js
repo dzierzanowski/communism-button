@@ -1,7 +1,7 @@
 var CACHE_NAME = 'communism-button-v1'
-var urlsToCache = [                    // Add URL you want to cache in this list.
-    '/dzierzanowski/',          // If you have separate JS/CSS files,
-    '/dzierzanowski/index.html' // add path to those files here
+var urlsToCache = [             // Add URL you want to cache in this list.
+    "/dzierzanowski/",          // If you have separate JS/CSS files,
+    "/dzierzanowski/index.html" // add path to those files here
 ]
 
 // Respond with cached resources
