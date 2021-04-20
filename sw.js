@@ -36,7 +36,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', function (e) {
     e.waitUntil(
         caches.keys().then(keyList => {
-            var cacheWhitelist = keyList.filter(key => key.indexOf(APP_PREFIX))
+            var cacheWhitelist = keyList.filter(/*key => key.indexOf(APP_PREFIX)*/ true)
             cacheWhitelist.push(CACHE_NAME)
 
             return Promise.all(keyList.map((key, i) => {
