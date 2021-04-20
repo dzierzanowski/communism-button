@@ -4,7 +4,8 @@ var urlsToCache = [             // Add URL you want to cache in this list.
     "/communism-button/index.html", // add path to those files here
     "/communism-button/bs/css/bootstrap.min.css",
     "/communism-button/bs/js/bootstrap.bundle.min.js",
-    "/communism-button/manifest.json"
+    "/communism-button/manifest.json",
+    "/communism-button/communism.mp3"
 ]
 
 // Respond with cached resources

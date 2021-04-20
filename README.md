@@ -11,6 +11,8 @@ app, where you can get as much communism as you like, distraction-free.
 ## Acknowledgements
 Thanks to [@kosamari](https://github.com/kosamari) for sharing a simple [service worker stub](https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e).
 
+The Alexandrov Choir track fragment comes from: https://www.youtube.com/watch?v=U06jlgpMtQs
+
 ## Licensing
 This app is licensed under GNU Affero General Public License v3.0, which will hopefully
 prevent capitalists from capitalizing this communism.
