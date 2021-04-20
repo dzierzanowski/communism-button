@@ -23,7 +23,7 @@
     "purpose": "any maskable"
   }, {
     "src": "images/homescreen128.png",
-    "sizes": "96x96",
+    "sizes": "128x128",
     "type": "image/png",
     "purpose": "any maskable"
   }, {
