@@ -25,8 +25,8 @@ self.addEventListener('install', e => {
     e.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
             console.log('Installing cache: ' + CACHE_NAME)
-            // return cache.addAll(urlsToCache)
-            return cache.addAll(['/dzierzanowski/'])
+            return cache.addAll(urlsToCache)
+            // return cache.addAll(['/dzierzanowski/'])
         })
     )
 })
