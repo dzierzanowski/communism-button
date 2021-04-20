@@ -3,6 +3,7 @@
   "short_name": "Communism",
   "start_url": ".",
   "display": "standalone",
+  "theme_color": "#CD0000",
   "background_color": "#CD0000",
   "description": "Button which provides instant communism.",
   "icons": [{
