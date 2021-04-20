@@ -2,8 +2,8 @@ var APP_PREFIX = 'CommunismButton_'
 var VERSION = '0.0.1'
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [                    // Add URL you want to cache in this list.
-    '/{repository}/',           // If you have separate JS/CSS files,
-    '/{repository}/index.html'  // add path to those files here
+    '/dzierzanowski/',           // If you have separate JS/CSS files,
+    '/dzierzanowski/index.html'  // add path to those files here
 ]
 
 // Respond with cached resources
