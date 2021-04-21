@@ -13,6 +13,32 @@ var urlsToCache = [             // Add URL you want to cache in this list.
 // Respond with cached resources
 self.addEventListener('fetch', function (e) {
     console.log('Fetch request: ' + e.request.url)
+    if (event.request.headers.get('range')) {
+        var pos = Number(/^bytes\=(\d+)\-$/g.exec(event.request.headers.get('range'))[1]);
+        console.log('Range request for', event.request.url, ', starting position:', pos);
+        e.respondWith(
+            caches.open(CURRENT_CACHES.prefetch)
+            .then(cache => {
+                return cache.match(event.request.url);
+            })
+            .then(res => {
+                if (!res) {
+                    return fetch(event.request).then(res => { return res.arrayBuffer() });
+                }
+                return res.arrayBuffer();
+            }).then(function(ab) {
+                return new Response(
+                    ab.slice(pos),
+                    {
+                        status: 206,
+                        statusText: 'Partial Content',
+                        headers: [
+                            ['Content-Range', 'bytes ' + pos + '-' + (ab.byteLength - 1) + '/' + ab.byteLength]
+                        ]
+                    });
+            })
+        );
+  } else {
     e.respondWith(
         caches.match(e.request).then(function (request) {
             if (request) {
