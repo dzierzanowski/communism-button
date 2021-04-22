@@ -1,13 +1,15 @@
-var CACHE_NAME = 'communism-button-v1'
-var urlsToCache = [             // Add URL you want to cache in this list.
-    "/communism-button/",          // If you have separate JS/CSS files,
-    "/communism-button/index.html", // add path to those files here
+var CACHE_NAME = 'communism-button-v2'
+var urlsToCache = [
+    "/communism-button/",
+    "/communism-button/index.html",
     "/communism-button/bs/css/bootstrap.min.css",
     "/communism-button/bs/js/bootstrap.bundle.min.js",
     "/communism-button/manifest.json",
     "/communism-button/communism.mp3",
     "/communism-button/button.svg",
-    "/communism-button/info.svg"
+    "/communism-button/info.svg",
+    "/communism-button/nano+mark.svg",
+    "/communism-button/fonts/OrelegaOne-Regular.ttf"
 ]
 
 // Respond with cached resources

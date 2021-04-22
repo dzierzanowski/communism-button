@@ -9,48 +9,162 @@
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./bs/css/bootstrap.min.css" />
     <style type="text/css">
+        @font-face {
+            font-family: "Orelega One";
+            src: url('./fonts/OrelegaOne-Regular.ttf');
+        }
         *{
-            background-color: #CD0000;
-            font-family: Georgia, serif;
+            font-family: Verdana, sans-serif;
             color: #FFD900;
+        }
+        body {
+            background-color: #CD0000;
         }
         #container {
             display: flex;
             height: 100vh;
             width: 100vw;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        #content {
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            -webkit-filter: blur(0);
+            filter: blur(0);
+            opacity: 1;
+            -webkit-transition: opacity 200ms ease, -webkit-filter 200ms ease;
+                    transition: opacity 200ms ease, -webkit-filter 200ms ease;
+                    transition: filter 200ms ease, opacity 200ms ease;
+                    transition: filter 200ms ease, opacity 200ms ease, -webkit-filter 200ms ease;
+        }
+        #content.modal-active {
+            -webkit-filter: blur(8px);
+            filter: blur(8px);
+            opacity: 0.4;
         }
         #button {
             width: 70vmin;
             border-radius: 50%;
-            box-shadow: 2em 2em 2em #522;
-            user-drag: none;
+            box-shadow: 1vmin 1vmin 2vmin #9c0000, -1vmin -1vmin 2vmin #fe0000;
+            user-drag: none; 
             user-select: none;
+            /*pointer-events: none;*/
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
         }
-        #buttonLink:focus #button {
-            box-shadow: 0.5em 0.5em 0.8em #522;
+        #button.pressed {
+            box-shadow: 0.3vmin 0.3vmin 0.6vmin #9c0000, -0.3vmin -0.3vmin 0.6vmin #fe0000;
         }
         #buttonLink {
             user-drag: none;
             user-select: none;
         }
         #modalButton {
+            border-radius: 50%;
             margin-top: 4em;
-            height: 4em;
+            width: 15vmin;
+            box-shadow: 0.5vmin 0.5vmin 1vmin #9c0000, -0.5vmin -0.5vmin 1vmin #fe0000;
             user-drag: none;
             user-select: none;
+        }
+        #modalButton.pressed {
+            box-shadow: 0.2vmin 0.2vmin 0.4vmin #9c0000, -0.2vmin -0.2vmin 0.4vmin #fe0000;
+        }
+        #modal {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 1;
+            opacity: 1;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            /*background: none;*/
+            background: rgb(135, 0, 0); /* backup */
+            background: rgba(0, 0, 0, 0.4); /* backup */
+            -webkit-transition: all 200ms ease;
+                    transition: all 200ms ease;
+        }
+        #modal.hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+        #modalBox {
+            display: flex;
+            flex-direction: column;
+            width: 90vw;
+            height: 60vh;
+            border-radius: 1em;
+            padding: 1em;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 3em #300 inset;
+        }
+        @media screen and (min-width: 768px) {
+            #modalBox {
+                width: 700px;
+                height: auto;
+            }
+        }
+        h1 {
+            font-size: 3em;
+            font-family: "Orelega One", serif;
+            font-weight: bold;
+        }
+        a {
+            font-weight: bold;   
+        }
+        a:link, a:visited {
+            color: #FFD900;
+        }
+        a:hover, a:active {
+            color: #FFD900;
+        }
+        img#nano {
+            height: 1em;
+        }
+        pre {
+            font-size: 1em;
+            user-select: all;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
         }
     </style>
     <title>Communism Button</title>
 </head>
 <body>
     <div id="container">
-        <a draggable="false" id="buttonLink" href="#">
-            <img draggable="false" id="button" src="./button.svg" onclick="communism()"></img>
-        </a>
-        <img src="info.svg" id="modalButton"></img>
+        <div id="content">
+            <img draggable="false" unselectable="on" id="button" src="./button.svg" onclick="communism()"></img>
+            <img draggable="false" unselectable="on" id="modalButton" src="./info.svg" ></img>
+        </div>
+    </div>
+
+    <div id="modal" class="hidden">
+        <div id="modalBox" class="hidden">
+            <h1>Привет!</h1>
+            <p style="flex-grow: 1;">
+                This app was made for fun by <a href="https://twitter.com/wakedowsky">@wakedowsky</a>,
+                check him out also on <a href="https://github.com/dzierzanowski/">GitHub</a>.
+                Please note, that I <u>do not</u> support oppresive, criminal regimes.
+            </p>
+            <p>
+                Consider donating some <a href="https://nano.org/"><img id="nano" src="./nano+mark.svg" />Nano</a>:
+                <pre>nano_3gg4uhy96an4ah8w5snn8rijddwhnjk94j5f4irjyf8f6imtkwttnbqrj9ph</pre>
+            </p>
+        </div>
     </div>
 
     <script>
@@ -64,16 +178,58 @@
         })
     }
     
+    const content = document.getElementById('content');
+    const modal = document.getElementById('modal');
+    const modalBox = document.getElementById('modalBox');
     const button = document.getElementById('button');
-    const buttonLink = document.getElementById('buttonLink');
-    button.setAttribute('draggable', false);
-    buttonLink.addEventListener('mouseup', buttonLink.blur, false)
-    buttonLink.addEventListener('touchstart', buttonLink.focus, false)
-    buttonLink.addEventListener('touchend', buttonLink.blur, false)
-    const audio = new Audio("./communism.mp3");
+    const modalButton = document.getElementById('modalButton');
+    button.addEventListener('mousedown', press, false)
+    button.addEventListener('touchstart', press, false)
+    modalButton.addEventListener('mousedown', pressModal, false)
+    modalButton.addEventListener('touchstart', pressModal, false)
+    // modal.addEventListener('mousedown', closeModal, false)
+    // modal.addEventListener('touchstart', closeModal, false)
+    window.addEventListener('mouseup', release, false)
+    window.addEventListener('touchend', release, false)
+    window.ondragstart = function() { return false }
 
+    const audio = new Audio("./communism.mp3");
     function communism() {
         audio.play();
+    }
+
+    function openModal() {
+        content.classList.add("modal-active");
+        modal.classList.remove("hidden");
+        modalBox.classList.remove("hidden");
+    }
+
+    function closeModal() {
+        content.classList.remove("modal-active");
+        modal.classList.add("hidden");
+        modalBox.classList.add("hidden");
+    }
+
+    function press() {
+        communism();
+        button.classList.add("pressed");
+    }
+
+    function release() {
+        button.classList.remove("pressed");
+        modalButton.classList.remove("pressed");
+    }
+
+    function pressModal() {
+        modalButton.classList.add("pressed");
+        openModal();
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
     }
     </script>
     <script src="./bs/js/bootstrap.bundle.min.js"></script>
