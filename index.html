@@ -195,8 +195,15 @@
     window.addEventListener('touchend', release, false)
     window.ondragstart = function() { return false }
 
-    button.oncontextmenu = function(e) { e.preventDefault(); e.stopPropagation(); return false; }
-    modalButton.oncontextmenu = function(e) { e.preventDefault(); e.stopPropagation(); return false; }
+    button.oncontextmenu = function(e) { absorbLongPress(e); return false; }
+    modalButton.oncontextmenu = function(e) { absorbLongPress(e); return false; }
+
+    function absorbLongPress(e) {
+        e.preventDefault && e.preventDefault();
+        e.stopPropagation && e.stopPropagation();
+        e.cancelBubble = true;
+        e.returnValue = false;
+    }
 
     const audio = new Audio("./communism.mp3");
     function communism() {
