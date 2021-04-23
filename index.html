@@ -105,7 +105,7 @@
             display: flex;
             flex-direction: column;
             width: 90vw;
-            height: 60vh;
+            min-height: : 60vh;
             border-radius: 1em;
             padding: 1em;
             background: rgba(0, 0, 0, 0.5);
@@ -157,9 +157,12 @@
     <div id="modal" class="hidden">
         <div id="modalBox" class="hidden">
             <h1>Привет!</h1>
+            <p>
+                This is a progressive web app, you can <u>install it to use offline</u> like regular apps through your browser's menu.
+            </p>
             <p style="flex-grow: 1;">
                 This app was made for fun by <a href="https://twitter.com/wakedowsky">@wakedowsky</a>,
-                check him out also on <a href="https://github.com/dzierzanowski/">GitHub</a>.
+                check it out also on <a href="https://github.com/dzierzanowski/communism-button">GitHub</a>.
                 Please note, that I <u>do not</u> support oppresive, criminal regimes.
             </p>
             <p>
@@ -198,6 +201,13 @@
     button.oncontextmenu = function(e) { absorbLongPress(e); return false; }
     modalButton.oncontextmenu = function(e) { absorbLongPress(e); return false; }
 
+    window.onload = () => {
+        const anchor = window.location.hash;
+        if (anchor == "#about") {
+            openModal();
+        }
+    }
+
     function absorbLongPress(e) {
         e.preventDefault && e.preventDefault();
         e.stopPropagation && e.stopPropagation();
@@ -214,17 +224,20 @@
         content.classList.add("modal-active");
         modal.classList.remove("hidden");
         modalBox.classList.remove("hidden");
+        window.location.hash = "#about"
     }
 
     function closeModal() {
         content.classList.remove("modal-active");
         modal.classList.add("hidden");
         modalBox.classList.add("hidden");
+        history.pushState(null, null, ' ');
     }
 
-    function press() {
+    function press(e) {
         communism();
         button.classList.add("pressed");
+        absorbLongPress(e);
     }
 
     function release() {
@@ -232,9 +245,10 @@
         modalButton.classList.remove("pressed");
     }
 
-    function pressModal() {
+    function pressModal(e) {
         modalButton.classList.add("pressed");
         openModal();
+        absorbLongPress(e);
     }
 
     // When the user clicks anywhere outside of the modal, close it
