@@ -195,8 +195,8 @@
     window.addEventListener('touchend', release, false)
     window.ondragstart = function() { return false }
 
-    button.oncontextmenu = function(e) { e.preventDefault(); e.stopPropagation(); }
-    modalButton.oncontextmenu = function(e) { e.preventDefault(); e.stopPropagation(); }
+    button.oncontextmenu = function(e) { e.preventDefault(); e.stopPropagation(); return false; }
+    modalButton.oncontextmenu = function(e) { e.preventDefault(); e.stopPropagation(); return false; }
 
     const audio = new Audio("./communism.mp3");
     function communism() {
@@ -234,6 +234,13 @@
     window.onclick = function(event) {
         if (event.target == modal) {
             closeModal();
+            // Fix glitch where Nano address is selected upon reopening of
+            // the modal window.
+            if (window.getSelection) {
+                window.getSelection().removeAllRanges();
+            } else if (document.selection) {
+                document.selection.empty();
+            }
         }
     }
     </script>
