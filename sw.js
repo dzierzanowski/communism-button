@@ -1,31 +1,40 @@
-var CACHE_NAME = 'communism-button-v2'
+var CACHE_NAME = 'communism-button-v4'
 var urlsToCache = [
     "/communism-button/",
     "/communism-button/index.html",
-    "/communism-button/bs/css/bootstrap.min.css",
-    "/communism-button/bs/js/bootstrap.bundle.min.js",
     "/communism-button/manifest.json",
     "/communism-button/communism.mp3",
     "/communism-button/button.svg",
     "/communism-button/info.svg",
     "/communism-button/nano+mark.svg",
-    "/communism-button/fonts/OrelegaOne-Regular.ttf"
+    "/communism-button/fonts/OrelegaOne-Regular.ttf",
+    "/communism-button/images/homescreen48.png",
+    "/communism-button/images/homescreen72.png",
+    "/communism-button/images/homescreen96.png",
+    "/communism-button/images/homescreen128.png",
+    "/communism-button/images/homescreen192.png",
+    "/communism-button/images/homescreen256.png",
+    "/communism-button/images/homescreen384.png",
+    "/communism-button/images/homescreen512.png",
+    "/communism-button/images/homescreen1024.png",
+    "/communism-button/images/favicon-16x16.png",
+    "/communism-button/images/favicon-32x32.png"
 ]
 
 // Respond with cached resources
 self.addEventListener('fetch', function (e) {
     console.log('Fetch request: ' + e.request.url)
-    if (event.request.headers.get('range')) {
-        var pos = Number(/^bytes\=(\d+)\-$/g.exec(event.request.headers.get('range'))[1]);
-        console.log('Range request for', event.request.url, ', starting position:', pos);
+    if (e.request.headers.get('range')) {
+        var pos = Number(/^bytes\=(\d+)\-$/g.exec(e.request.headers.get('range'))[1]);
+        console.log('Range request for', e.request.url, ', starting position:', pos);
         e.respondWith(
-            caches.open(CURRENT_CACHES.prefetch)
+            caches.open(CACHE_NAME)
             .then(cache => {
-                return cache.match(event.request.url);
+                return cache.match(e.request.url);
             })
             .then(res => {
                 if (!res) {
-                    return fetch(event.request).then(res => { return res.arrayBuffer() });
+                    return fetch(e.request).then(res => { return res.arrayBuffer() });
                 }
                 return res.arrayBuffer();
             }).then(function(ab) {
