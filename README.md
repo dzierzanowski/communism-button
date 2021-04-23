@@ -1,6 +1,9 @@
 # Communism Button
 
-A progressive web app which provides instant communism at the push of a button.
+A progressive web app (PWA) which provides instant communism at the push of a
+button.
+
+Launch it: [Communism Button](https://dzierzanowski.github.io/communism-button/)
 
 ## Inspiration
 
