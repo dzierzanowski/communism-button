@@ -16,6 +16,8 @@ first?! Here's a true communism button app, where you can get as much communism
 as you like, without boosting anyone's capital.
 
 ## Acknowledgements
+This app is a joke, I *do not* support oppressive, criminal regimes.
+
 Thanks to [@kosamari](https://github.com/kosamari) for sharing a simple [service
 worker stub](https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e).
 
