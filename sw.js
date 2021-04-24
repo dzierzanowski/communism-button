@@ -18,7 +18,8 @@ var urlsToCache = [
     "/communism-button/images/homescreen512.png",
     "/communism-button/images/homescreen1024.png",
     "/communism-button/images/favicon-16x16.png",
-    "/communism-button/images/favicon-32x32.png"
+    "/communism-button/images/favicon-32x32.png",
+    "/communism-button/images/tile.jpg"
 ]
 
 // Respond with cached resources
