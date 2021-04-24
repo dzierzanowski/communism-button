@@ -184,17 +184,15 @@
         })
     }
     
-    const content = document.getElementById('content');
-    const modal = document.getElementById('modal');
-    const modalBox = document.getElementById('modalBox');
-    const button = document.getElementById('button');
-    const modalButton = document.getElementById('modalButton');
+    const content = document.getElementById('content')
+    const modal = document.getElementById('modal')
+    const modalBox = document.getElementById('modalBox')
+    const button = document.getElementById('button')
+    const modalButton = document.getElementById('modalButton')
     button.addEventListener('mousedown', press, false)
     button.addEventListener('touchstart', press, false)
     modalButton.addEventListener('mousedown', pressModal, false)
     modalButton.addEventListener('touchstart', pressModal, false)
-    // modal.addEventListener('mousedown', closeModal, false)
-    // modal.addEventListener('touchstart', closeModal, false)
     window.addEventListener('mouseup', release, false)
     window.addEventListener('touchend', release, false)
     window.ondragstart = function() { return false }
@@ -203,53 +201,54 @@
     modalButton.oncontextmenu = function(e) { absorbLongPress(e); return false; }
 
     window.onload = () => {
-        const anchor = window.location.hash;
+        const anchor = window.location.hash
         if (anchor == "#about") {
-            openModal();
+            openModal()
         }
     }
 
     function absorbLongPress(e) {
-        e.preventDefault && e.preventDefault();
-        e.stopPropagation && e.stopPropagation();
-        e.cancelBubble = true;
-        e.returnValue = false;
+        e.preventDefault && e.preventDefault()
+        e.stopPropagation && e.stopPropagation()
+        e.cancelBubble = true
+        e.returnValue = false
     }
 
-    const audio = new Audio("./communism.mp3");
+    const audio = new Audio("./communism.mp3")
+    audio.load()
     function communism() {
-        audio.play();
+        audio.play()
     }
 
     function openModal() {
-        content.classList.add("modal-active");
-        modal.classList.remove("hidden");
-        modalBox.classList.remove("hidden");
+        content.classList.add("modal-active")
+        modal.classList.remove("hidden")
+        modalBox.classList.remove("hidden")
         window.location.hash = "#about"
     }
 
     function closeModal() {
         content.classList.remove("modal-active");
-        modal.classList.add("hidden");
-        modalBox.classList.add("hidden");
-        history.pushState(null, null, ' ');
+        modal.classList.add("hidden")
+        modalBox.classList.add("hidden")
+        history.pushState(null, null, ' ')
     }
 
     function press(e) {
-        communism();
-        button.classList.add("pressed");
-        absorbLongPress(e);
+        communism()
+        button.classList.add("pressed")
+        absorbLongPress(e)
     }
 
     function release() {
-        button.classList.remove("pressed");
-        modalButton.classList.remove("pressed");
+        button.classList.remove("pressed")
+        modalButton.classList.remove("pressed")
     }
 
     function pressModal(e) {
-        modalButton.classList.add("pressed");
-        openModal();
-        absorbLongPress(e);
+        modalButton.classList.add("pressed")
+        openModal()
+        absorbLongPress(e)
     }
 
     // When the user clicks anywhere outside of the modal, close it
@@ -259,9 +258,9 @@
             // Fix glitch where Nano address is selected upon reopening of
             // the modal window.
             if (window.getSelection) {
-                window.getSelection().removeAllRanges();
+                window.getSelection().removeAllRanges()
             } else if (document.selection) {
-                document.selection.empty();
+                document.selection.empty()
             }
         }
     }
