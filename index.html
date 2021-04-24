@@ -200,10 +200,16 @@
     button.oncontextmenu = function(e) { absorbLongPress(e); return false; }
     modalButton.oncontextmenu = function(e) { absorbLongPress(e); return false; }
 
-    window.onload = () => {
+    window.onload = recalculateHash
+    window.onhashchange = recalculateHash
+
+    function recalculateHash() {
         const anchor = window.location.hash
         if (anchor == "#about") {
             openModal()
+        }
+        else {
+            closeModal()
         }
     }
 
@@ -231,7 +237,9 @@
         content.classList.remove("modal-active");
         modal.classList.add("hidden")
         modalBox.classList.add("hidden")
-        history.pushState(null, null, ' ')
+        if (window.location.hash) {
+            history.pushState(null, null, ' ')
+        }
     }
 
     function press(e) {
