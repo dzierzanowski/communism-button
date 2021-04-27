@@ -244,7 +244,9 @@
     const audio = new Audio("./communism.mp3")
     audio.load()
     function communism() {
-        audio.play()
+        audio.play().then(null, err => {
+            communism();
+        })
     }
 
     function openModal() {
