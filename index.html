@@ -171,13 +171,13 @@
 <body>
     <div id="container">
         <div id="content">
-            <img draggable="false" unselectable="on" id="button" src="./button.svg" onclick="communism()"></img>
+            <img draggable="false" unselectable="on" id="button" src="./button.svg"></img>
             <img draggable="false" unselectable="on" id="modalButton" src="./info.svg" ></img>
         </div>
     </div>
 
     <div id="modal" class="hidden">
-        <div id="modalBox" class="hidden">
+        <div id="modalBox">
             <h1>Привет!</h1>
             <p>
                 This is a progressive web app, you can <u>install it to use offline</u> like regular apps through your browser's menu.
@@ -221,8 +221,16 @@
     button.oncontextmenu = function(e) { absorbLongPress(e); return false; }
     modalButton.oncontextmenu = function(e) { absorbLongPress(e); return false; }
 
-    window.onload = recalculateHash
+    window.onload = onWindowLoad
     window.onhashchange = recalculateHash
+
+    function onWindowLoad() {
+        const anchor = window.location.hash
+        if (anchor == "#about") {
+            openModal()
+        }
+        collectVisit()
+    }
 
     function recalculateHash() {
         const anchor = window.location.hash
@@ -244,7 +252,9 @@
     const audio = new Audio("./communism.mp3")
     audio.load()
     function communism() {
-        audio.play().then(null, err => {
+        audio.play().then(res => {
+            collectEvent()
+        }, err => {
             sleep(250).then(res => {
                 communism()
             })
@@ -254,14 +264,12 @@
     function openModal() {
         content.classList.add("modal-active")
         modal.classList.remove("hidden")
-        modalBox.classList.remove("hidden")
         window.location.hash = "#about"
     }
 
     function closeModal() {
         content.classList.remove("modal-active");
         modal.classList.add("hidden")
-        modalBox.classList.add("hidden")
         if (window.location.hash) {
             history.pushState(null, null, ' ')
         }
@@ -296,6 +304,62 @@
                 document.selection.empty()
             }
         }
+    }
+
+
+    // Taken from https://stackoverflow.com/a/2117523/6417161
+    function uuidv4() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    }
+
+    // This let's me know, whether I'm the only communist button enjoyer out there.
+    // Thanks for understanding!
+    let playCounter = 0
+    const trackerId = "UA-195640177-1"
+    const sessionUuid = uuidv4()
+    const commonRequestParams = [
+        /*
+         * Proto version: 1
+         * Anonymize IP: true
+         * Client ID: generated for this session
+         * Tracker ID: constant
+         * Document location: document.location
+         */
+        "v=1",
+        "aip=1",
+        `cid=${sessionUuid}`,
+        `tid=${trackerId}`,
+        `dl=${document.location}`
+    ]
+    function collectVisit() {
+        const requestParams = commonRequestParams.concat([
+            /*
+             * Hit type: pageview
+             */
+            "t=pageview"
+        ]);
+        let req = new XMLHttpRequest()
+        req.open("GET", "https://www.google-analytics.com/collect?" + requestParams.join("&"))
+        req.send()
+    }
+    function collectEvent() {
+        playCounter += 1
+        const requestParams = commonRequestParams.concat([
+            /*
+             * Hit type: event
+             * Event category: generation
+             * Event Action: generate
+             */
+            "t=event",
+            "ec=interaction",
+            "ea=play",
+            `el=${playCounter}`
+        ])
+        let req = new XMLHttpRequest()
+        req.open("GET", "https://www.google-analytics.com/collect?" + requestParams.join("&"))
+        req.send()
     }
     </script>
 </body>
