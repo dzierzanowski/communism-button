@@ -16,10 +16,13 @@ first?! Here's a true communism button app, where you can get as much communism
 as you like, without boosting anyone's capital.
 
 ## Acknowledgements
-This app is a joke, I *do not* support oppressive, criminal regimes.
+This app is a joke, I *do not* support oppressive, criminal regimes. Take it
+easy.
 
 Thanks to [@kosamari](https://github.com/kosamari) for sharing a simple [service
-worker stub](https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e).
+worker stub](https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e)
+and [@samdutton](https://github.com/samdutton) for a [solution](https://samdutton.github.io/samples/service-worker/prefetch-video/)
+of multipart download handling in service workers.
 
 The Alexandrov Choir track fragment comes from:
 https://www.youtube.com/watch?v=U06jlgpMtQs
