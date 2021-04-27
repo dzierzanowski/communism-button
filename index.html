@@ -245,7 +245,9 @@
     audio.load()
     function communism() {
         audio.play().then(null, err => {
-            communism();
+            sleep(250).then(res => {
+                communism()
+            })
         })
     }
 
